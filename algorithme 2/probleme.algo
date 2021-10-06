@@ -1,0 +1,62 @@
+ALGORITHM Algo_array
+VAR
+    set 1: Array_of_integer [n]
+    Set 2: Array_of_integer [m]
+    set  : Array_of_integer[n+m] 
+    i : integer = 0
+    j : integer = 0
+    n,j,k,l : integer
+    sumDistinct : integer = 0
+    sumRpeat : integer = 0
+BEGIN
+   read (n)
+   FOR i from 0 to n-1 do
+   read(set[i])
+   End FOR
+   read(m)
+   FOR j from 0 to j-1 do
+   read(set[j])
+   End FOR
+
+   set = concat(set1,set2)
+   FOR k from 0 to set.length-1 do
+   check = false
+   FOR l from 0 to set.length-1 do
+   IF set[k] == set[l] then
+   sumRpeat = sumRpeat + set[k];
+   End IF
+   End FOR
+   IF (check = false) then
+   sumDistinct = sumDistinct + set[k];
+   End FOR
+   write('sum of all distinct elements :',sumDistinct)
+   write('sum of all overlapping elements :',sumRpeat)
+END
+ALGORITHM algo_htab
+VAR
+    set1 : Array_of_integer[n]
+    set2 : Array_of_integer[m]
+    set : Array_of_integer[n+m]
+    HTAB : HASH_table<integer,integer>
+    sumDiff : integer =0
+    sumComm : integer =0
+BEGIN
+    set := set1.concat(set2)
+    FOR i from 0 to set.length-1 do
+    IF (HTAB.lookup(set[i])= false) then
+    HTAB.insert(set[i], 1)
+    ElSE 
+    HTAB.insert(set[i], HTAB.get(set[i])+1)
+    END IF
+    END FOR
+    FOR Item in HTAB do
+    IF (HTAB.get(Item) >1) 
+    sumComm = sumComm + (item * HTAB.get(Item))
+    END IF
+    IF (HTAB.get(Item) =1) 
+    sumDiff = sumDiff + item
+    END IF
+    END FOR
+    write('sum of all distinct elements :',sumDiff);
+    write('sum of all overlapping elements :',sumComm);
+END
